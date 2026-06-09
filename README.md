@@ -1,28 +1,31 @@
-# Sistem Informasi Manajemen Aset dan BHP Laboratorium (E-Procurement)
+# Sistem Informasi Manajemen Aset dan BHP Laboratorium
 
-Aplikasi Capstone ini dirancang untuk melakukan digitalisasi, pengajuan pengadaan, pemeliharaan, serta pelacakan siklus hidup aset tetap dan Barang Habis Pakai (BHP) di laboratorium. Aplikasi ini menggunakan arsitektur terpisah dengan **Node.js (Express)** sebagai Backend API dan **Laravel** sebagai Frontend Antarmuka.
+Aplikasi ini adalah sistem E-Procurement dan digitalisasi aset laboratorium.
 
----
+## Prasyarat
+- Node.js (v16+)
+- PHP (v8.1+) & Composer
+- MySQL/MariaDB
 
-## Prasyarat Sistem
-Sebelum menjalankan aplikasi, pastikan perangkat Anda telah terinstal:
-- Node.js (Versi 16 atau terbaru)
-- PHP (Versi 8.1 atau terbaru)
-- Composer
-- MySQL Server / XAMPP
+## Cara Menjalankan Aplikasi
 
----
+### 1. Database
+- Buat database baru di MySQL dengan nama `capstone2_db`.
+- Impor file `capstone2_db.sql` yang ada di root folder ini ke dalam database tersebut.
 
-## Langkah Pengaturan & Instalasi
+### 2. Backend (Node.js)
+1. Buka terminal di folder root.
+2. Jalankan: `npm install`
+3. Jalankan server: `npm start`
+   (Aplikasi berjalan di port 3000)
 
-### 1. Pengaturan Basis Data
-1. Buka MySQL Server Anda (melalui XAMPP atau MySQL CLI).
-2. Buat sebuah database baru dengan nama sesuai konfigurasi Anda.
-3. Impor file skema database **`database_schema.sql`** yang tersedia di root repository ini ke dalam database baru tersebut.
+### 3. Frontend (Laravel)
+1. Buka terminal baru, masuk ke folder frontend: `cd capstone2-frontend`
+2. Jalankan: `composer install`
+3. Salin env: `cp .env.example .env`
+4. Generate key: `php artisan key:generate`
+5. Jalankan server: `php artisan serve`
+   (Akses di http://127.0.0.1:8000)
 
-### 2. Pengaturan Backend (Node.js)
-1. Buka terminal atau CMD pada folder utama (root) repository ini.
-2. Pastikan file `server.js` sudah terkonfigurasi dengan detail koneksi database MySQL Anda (host, user, password, dan nama database).
-3. Jalankan perintah berikut untuk menginstal dependensi backend:
-   ```bash
-   npm install
+## Hak Akses (RBAC)
+Sistem ini menggunakan 5 peran pengguna: Administrator, Kepala Laboratorium, Kaprodi, Staf Administrasi, dan Staf Laboratorium. Setiap peran memiliki dashboard dan hak akses yang berbeda sesuai dengan siklus hidup barang.
